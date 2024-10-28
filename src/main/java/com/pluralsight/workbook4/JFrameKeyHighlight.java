@@ -1,29 +1,26 @@
 package com.pluralsight.workbook4;
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
 import java.awt.*;
 import java.awt.event.KeyEvent;
 import java.awt.event.KeyListener;
-
+import java.io.IOException;
+import java.util.List;
 
 // JFrame process to hopefully control arrow key up/down
-//
-
-public class JFrameKeyHighlight extends JFrame implements KeyListener
-
-{
+public class JFrameKeyHighlight extends JFrame implements KeyListener {
     private JTextArea textArea;
     private int currentLine = 0;
     private final String[] lines;
 
-
-    public JFrameKeyHighlight()
-    {
+    public JFrameKeyHighlight(List<String> promptList) throws IOException, BadLocationException
+    { // Added parameter
         this.lines = promptList.toArray(new String[0]);
         utilityFrameSetUp();
     }
 
-    public void utilityFrameSetUp()
+    public void utilityFrameSetUp() throws IOException, BadLocationException
     {
         textArea = new JTextArea();
         textArea.setEditable(false);
@@ -43,59 +40,44 @@ public class JFrameKeyHighlight extends JFrame implements KeyListener
         highlightLine(currentLine);
     }
 
-
-    public static void runTextHighlight(List<String> promptList)
+    public static void runTextHighlight(List<String> promptList) throws IOException, BadLocationException
     {
         new JFrameKeyHighlight(promptList);
     }
 
     @Override
-    public void keyPressed(KeyEvent e)
-    {
-        textHighlighter(e);
+    public void keyPressed(KeyEvent e) {
+        try {
+            textHighlighter(e);
+        } catch (IOException ex) {
+            throw new RuntimeException(ex);
+        } catch (BadLocationException ex) {
+            throw new RuntimeException(ex);
+        }
     }
 
     @Override
-    public void keyReleased(KeyEvent e)
-    {
-    }
+    public void keyReleased(KeyEvent e) {}
 
     @Override
-    public void keyTyped(KeyEvent e)
+    public void keyTyped(KeyEvent e) {}
+
+    private void textHighlighter(KeyEvent e) throws IOException, BadLocationException
     {
-    }
-
-
-    private void textHighlighter(KeyEvent highlight)
-    {
-        // Using if statement highlights or changing color of text based on user arrow key input
-
-        if (highlight.getKeyCode() == KeyEvent.VK_UP) {
-            // Direction up
-            if (currentLine > 0) {
-                currentLine--;
-                highlightLine(currentLine);
-            }
-
-        } else if (highlight.getKeyCode() == KeyEvent.VK_DOWN) {
+        if (e.getKeyCode() == KeyEvent.VK_DOWN) {
             if (currentLine < lines.length - 1) {
-                currentLine++;
-                highlightLine(currentLine);
+                highlightLine(++currentLine);
             }
-
-
+        } else if (e.getKeyCode() == KeyEvent.VK_UP) {
+            if (currentLine > 0) {
+                highlightLine(--currentLine);
+            }
         }
-
-
     }
-    private void highlightLine (int lineIndex) {
-        textArea.setText("");
-        for (int i = 0; i < lines.length; i++) {
-            if (i == lineIndex) {
-                textArea.append(">> " + lines[i] + "\n");
-            } else {
-                textArea.append(lines[i] + "\n");
-            }
-        }
+
+    private void highlightLine(int lineIndex) throws IOException, BadLocationException
+    {
+        textArea.setSelectionStart(textArea.getLineStartOffset(lineIndex));
+        textArea.setSelectionEnd(textArea.getLineEndOffset(lineIndex));
     }
 }

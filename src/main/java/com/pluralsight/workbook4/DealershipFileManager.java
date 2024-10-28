@@ -9,71 +9,34 @@ import java.time.LocalTime;
 import java.util.ArrayList;
 import java.util.List;
 
-public class DealershipFileManager
-{
+public class DealershipFileManager {
+    private final String FILE_PATH = "./src/main/resources/inventory.csv"; // Changed to constant
     Dealership dealership;
 
-    // Wirting system
-    // Vehicle needs to be vehicle
-    public void saveToFile(Vehicle vm) throws IOException
-    {
-        try
-                (FileWriter fWriter = new FileWriter("./src/main/resources/inventory.csv"); //Writes to file
-                 BufferedWriter bWriter = new BufferedWriter(fWriter); //
-                 PrintWriter pWriter = new PrintWriter(bWriter)) { // Formats the printing
-
-// Change variables to appropriate ones
-            pWriter.append(String.valueOf(vm.getDate())).append(" | ").append(String.valueOf
-                    (vm.getTime())).append(" | ").append(vm.getType()).append
-                    (" | ").append(vm.getMake()).append(" | ").append(String.valueOf
-                    (vm.getPrice()));
+    public void saveToFile(Vehicle vm) throws IOException {
+        try (FileWriter fWriter = new FileWriter(FILE_PATH);
+             BufferedWriter bWriter = new BufferedWriter(fWriter);
+             PrintWriter pWriter = new PrintWriter(bWriter)) {
+            pWriter.append(String.valueOf(vm.getDate())).append(" | ")
+                    .append(String.valueOf(vm.getTime())).append(" | ")
+                    .append(vm.getType()).append(" | ")
+                    .append(vm.getMake()).append(" | ")
+                    .append(String.valueOf(vm.getPrice()));
 
             System.out.println("Inventory successfully updated!");
         } catch (IOException e) {
-            System.out.println("Error! Unable to update inventory" + e.getMessage());
+            System.out.println("Error! Unable to update inventory: " + e.getMessage());
             throw e;
         }
-
     }
 
-    // Reading system
-    public String headerParser() throws IOException
-    {
-        try { // Makes FileReader Obj and that opens the csv file
-            Reader in = new FileReader("./src/main/resources/inventory.csv");
-            Iterable<CSVRecord> records = CSVFormat.RFC4180.builder()
-                    .setHeader("Name", "Address", "Phone")
-                    .build()
-                    .parse(in);
-            for (CSVRecord record : records) {
-                String name = record.get("Name");
-                String address = record.get("Address");
-                String phone = record.get("Phone");
-            }
-        } catch (FileNotFoundException e) {
-            System.out.println("Error! File not found" + e.getMessage());
-        } catch (IOException e) {
-            System.out.println("Error! Unable to read data." + e.getMessage());
-        }
-        return dealership.toString();
-    }
-
-
-    public List<Vehicle> readFromFile(){
-    List<Vehicle> allCars;
-
-        StringBuilder vehicleInventory = new StringBuilder("./src/main/resources/inventory.csv");
-        allCars = new ArrayList<>();
-
-        try (BufferedReader bReader = new BufferedReader(new FileReader(String.valueOf(vehicleInventory)))) {
-
+    public List<Vehicle> readFromFile() {
+        List<Vehicle> allCars = new ArrayList<>();
+        try (BufferedReader bReader = new BufferedReader(new FileReader(FILE_PATH))) {
             String line;
             while ((line = bReader.readLine()) != null) {
                 String[] lineArr = line.split("\\|");
-
-                // Create a new transaction object
-                // Splitting object by character
-                if (lineArr.length == 9) {
+                if (lineArr.length == 9) { // Assuming 9 columns
                     Vehicle newCar = new Vehicle(
                             LocalDate.parse(lineArr[0].trim()),
                             LocalTime.parse(lineArr[1].trim()),
@@ -85,23 +48,14 @@ public class DealershipFileManager
                             Integer.parseInt(lineArr[7].trim()),
                             Double.parseDouble(lineArr[8].trim())
                     );
-
                     allCars.add(newCar);
-
                 }
             }
-            // Any list changes would need to be written to file and to Trans
         } catch (FileNotFoundException e) {
-            System.out.println("Error! File not found" + e.getMessage());
+            System.out.println("Error! File not found: " + e.getMessage());
         } catch (IOException e) {
-            System.out.println("Error! Unable to read data." + e.getMessage());
-
+            System.out.println("Error! Unable to read data: " + e.getMessage());
         }
         return allCars;
     }
-
-
 }
-
-
-

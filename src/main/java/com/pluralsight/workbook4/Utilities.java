@@ -9,81 +9,28 @@ import java.util.ArrayList;
 import java.util.List;
 
 // Grabs file with user prompt
-//
-//
 
+public class Utilities {
+    boolean menuIsRunning = true;
 
-class Utilities
-{
-
-    public boolean menuIsRunning = true;
-    static Scanner scan = new Scanner(System.in);
-
-
-    // Reads userPrompt.txt file
-    List<UserPrompt> userPromptReader()
-    {
-        String userPromptFilePath = ("./src/main/resources/userPrompt.txt");
+    public List<UserPrompt> userPromptReader() throws IOException {
         List<UserPrompt> promptList = new ArrayList<>();
+        String line;
 
-        try (BufferedReader bReader = new BufferedReader(new FileReader(userPromptFilePath))) {
-
-            String line;
-            while ((line = bReader.readLine()) != null) {
-                String[] lineArr = line.split("\\|");
-
-                //create a new transaction object
-
-                if (lineArr.length == 2) {
-                    UserPrompt newPrompt = new UserPrompt(
-                           Integer.parseInt(lineArr[0].trim()),
-                            lineArr[1].trim()
-                    );
-
-                    promptList.add(newPrompt);
-
+        try (BufferedReader br = new BufferedReader(new FileReader("user_prompts.txt"))) {
+            while ((line = br.readLine()) != null) {
+                String[] parts = line.split(",");
+                if (parts.length == 2) {
+                    promptList.add(new UserPrompt(parts[0], parts[1]));
                 }
             }
-            // Any list changes would need to be written to file and to Trans
         } catch (FileNotFoundException e) {
-            System.out.println("Error! File not found" + e.getMessage());
+            System.out.println("User prompts file not found: " + e.getMessage());
+            throw e;
         } catch (IOException e) {
-            System.out.println("Error! Unable to read data." + e.getMessage());
+            System.out.println("Error reading user prompts: " + e.getMessage());
+            throw e;
         }
         return promptList;
-    }
-
-
-}
-
-class UserPrompt
-{
-
-    private int numberChoice;
-    private String choiceText;
-
-    public UserPrompt (int prompt, String userResponse) {
-        this.numberChoice = prompt;
-        this.choiceText = userResponse;
-    }
-
-    public int getNumberChoice() {
-        return numberChoice;
-}
-public void setNumberChoice(int numberChoice) {
-        this.numberChoice = numberChoice;
-}
-public String getChoiceText() {
-        return choiceText;
-}
-public void setChoiceText(String choiceText){
-        this.choiceText = choiceText;
-}
-
-    @Override
-    public String toString()
-    {
-        return numberChoice + ':' +
-               " " + choiceText;
     }
 }

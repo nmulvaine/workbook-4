@@ -2,42 +2,17 @@ package com.pluralsight.workbook4;
 
 // Main .java file
 // Houses method for running menu screens
+
+import javax.swing.text.BadLocationException;
 import java.io.IOException;
-import java.util.List;
 
-public class Program
-{
-    // When false menu and application are closed
-    // Used for launching highlighting feature in utilities
-    // boolean isInMenu = true;
+public class Program {
 
-    public static void main(String[] args)
+    public static void main(String[] args) throws IOException, BadLocationException
     {
-        Utilities utilities = new Utilities();
-        UserInterface ui = new UserInterface();
+        UserInterface ui = new UserInterface(); // Moved inside main for proper scoping
 
+        // Show the menu landing first
+        ui.showMenuLanding();
     }
-    try
-
-    {
-
-        // Menu landing first
-
-
-        // Prompts from userPrompt.txt
-        List<UserPrompt> promptList = utilities.userPromptReader();
-        List<String> stringList = promptList.stream()
-                .map(UserPrompt::getPrompt)
-                .toList();
-
-        runTextHighlist(stringList);
-    } catch(
-    IOException e)
-
-    {
-        e.printStackTrace();
-    }
-    // Opening of program
-    // Pulls and runs UI
-
 }
