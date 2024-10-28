@@ -1,0 +1,11 @@
+ | Please select from the following
+1 | Search by price
+2 | Search by make / model
+3 | Search by year
+4 | Search by color
+5 | Search by mileage
+6 | Search by type
+7 | View all vehicles
+8 | Add vehicle
+9 | Remove vehicle
+99 | Quit application
