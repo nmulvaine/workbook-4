@@ -7,20 +7,27 @@ import javax.swing.text.BadLocationException;
 import java.io.IOException;
 import java.util.List;
 
-public class UserInterface {
-
+public class UserInterface extends Utilities
+{
     Utilities utilities = new Utilities();
 
-    // Allows for menuLanding to be called to another class
-    public void showMenuLanding() throws IOException, BadLocationException
+    public UserInterface(Utilities utilities)
     {
-        menuLanding();
+        this.utilities = utilities;
     }
+
+    public Utilities getUtilities()
+    {
+        return utilities;
+    }
+
+
 
     private void menuLanding() throws IOException, BadLocationException
     {
         System.out.println("Welcome to the D & B Used Car Dealership");
 
+        // promptList called but
         List<UserPrompt> promptList;
 
         try {

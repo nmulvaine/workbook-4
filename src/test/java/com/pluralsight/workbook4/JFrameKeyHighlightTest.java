@@ -18,7 +18,7 @@ class JFrameKeyHighlightTest
     @BeforeEach
     void setUp()
     {
-        utilities = new JFrameKeyHighlight();
+        //utilities = new JFrameKeyHighlight();
 
     }
 

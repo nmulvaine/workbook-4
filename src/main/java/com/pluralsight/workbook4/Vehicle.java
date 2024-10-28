@@ -10,7 +10,7 @@ public class Vehicle {
 
     private LocalTime time;
     private LocalDate date;
-    private String type;
+    private String vehicleType;
     private String make;
     private String model;
     private String color;
@@ -18,11 +18,11 @@ public class Vehicle {
     private int mileage;
     private double price;
 
-    public Vehicle(LocalDate date, LocalTime time, String type, String make, String model, String color, int year, int mileage, double price) {
+    public Vehicle(LocalDate date, LocalTime time, String vehicleType, String make, String model, String color, int year, int mileage, double price) {
         this.time = time;
         this.date = date;
         this.make = make;
-        this.type = type;
+        this.vehicleType = vehicleType;
         this.model = model;
         this.color = color;
         this.year = year;
@@ -49,12 +49,12 @@ public class Vehicle {
         this.date = date;
     }
 
-    public String getType() {
-        return type;
+    public String getVehicleType() {
+        return vehicleType;
     }
 
-    public void setType(String type) {
-        this.type = type;
+    public void setVehicleType(String vehicleType) {
+        this.vehicleType = vehicleType;
     }
 
     public String getMake() {
@@ -108,7 +108,7 @@ public class Vehicle {
     @Override
     public String toString() {
         return "Vehicle{" +
-               ", Type='" + type + '\'' +
+               ", Type='" + vehicleType + '\'' +
                ", Make='" + make + '\'' +
                ", Model='" + model + '\'' +
                ", Color='" + color + '\'' +

@@ -15,7 +15,8 @@ public class Dealership {
         this.dealershipAddress = dealershipAddress;
         this.dealershipPhone = dealershipPhone;
     }
-
+// None of the setters and getters get called
+    // Might be issue with dealership name parsing and printing
     public String getDealershipName() {
         return dealershipName;
     }

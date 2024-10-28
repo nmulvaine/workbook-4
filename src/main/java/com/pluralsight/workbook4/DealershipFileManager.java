@@ -1,8 +1,5 @@
 package com.pluralsight.workbook4;
 
-import org.apache.commons.csv.CSVFormat;
-import org.apache.commons.csv.CSVRecord;
-
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -19,7 +16,7 @@ public class DealershipFileManager {
              PrintWriter pWriter = new PrintWriter(bWriter)) {
             pWriter.append(String.valueOf(vm.getDate())).append(" | ")
                     .append(String.valueOf(vm.getTime())).append(" | ")
-                    .append(vm.getType()).append(" | ")
+                    .append(vm.getVehicleType()).append(" | ")
                     .append(vm.getMake()).append(" | ")
                     .append(String.valueOf(vm.getPrice()));
 
