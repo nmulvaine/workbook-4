@@ -1,4 +1,4 @@
-package com.pluralsight.workbook4;
+package com.pluralsight.utilities;
 
 import javax.swing.*;
 import javax.swing.text.BadLocationException;
@@ -40,7 +40,7 @@ public class JFrameKeyHighlight extends JFrame implements KeyListener {
         highlightLine(currentLine);
     }
 
-    public static void runTextHighlight(List<String> promptList) throws IOException, BadLocationException
+    public void runTextHighlight(List<String> promptList) throws IOException, BadLocationException
     {
         new JFrameKeyHighlight(promptList);
     }
@@ -49,9 +49,7 @@ public class JFrameKeyHighlight extends JFrame implements KeyListener {
     public void keyPressed(KeyEvent e) {
         try {
             textHighlighter(e);
-        } catch (IOException ex) {
-            throw new RuntimeException(ex);
-        } catch (BadLocationException ex) {
+        } catch (IOException | BadLocationException ex) {
             throw new RuntimeException(ex);
         }
     }
@@ -75,7 +73,7 @@ public class JFrameKeyHighlight extends JFrame implements KeyListener {
         }
     }
 
-    private void highlightLine(int lineIndex) throws IOException, BadLocationException
+    private void highlightLine(int lineIndex) throws BadLocationException
     {
         textArea.setSelectionStart(textArea.getLineStartOffset(lineIndex));
         textArea.setSelectionEnd(textArea.getLineEndOffset(lineIndex));

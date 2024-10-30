@@ -1,5 +1,6 @@
-package com.pluralsight.workbook4;
+package com.pluralsight.workshop.dealership;
 
+import com.pluralsight.utilities.JFrameKeyHighlight;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 

@@ -1,4 +1,4 @@
-package com.pluralsight.workbook4;
+package com.pluralsight.workshop.dealership;
 
 // Handles vehicle sales
 // Adding/removing vehicle

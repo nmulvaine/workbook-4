@@ -1,4 +1,4 @@
-package com.pluralsight.workbook4;
+package com.pluralsight.workshop.dealership;
 
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -6,7 +6,24 @@ import java.time.LocalTime;
 // Sorting logic (All, Type, Make, Model, Color, Year, Mileage, Price)
 // Print receipt?
 
-public class Vehicle {
+public class Vehicle
+{
+
+    // Make class for
+    // TODO Sedan
+    // TODO SUV (Sport Utility Vehicle)
+    // TODO Truck
+    // TODO Van
+    // TODO Coupe
+    // TODO Convertible
+    // TODO Hatchback
+    // TODO Minivan
+    // TODO Crossover
+    // TODO Electric Vehicle (EV)
+    // TODO Hybrid Vehicle
+    // TODO Luxury Car
+    // TODO Sports Car
+    // TODO Station Wagon
 
     private LocalTime time;
     private LocalDate date;
@@ -18,7 +35,8 @@ public class Vehicle {
     private int mileage;
     private double price;
 
-    public Vehicle(LocalDate date, LocalTime time, String vehicleType, String make, String model, String color, int year, int mileage, double price) {
+    public Vehicle(LocalDate date, LocalTime time, String vehicleType, String make, String model, String color, int year, int mileage, double price)
+    {
         this.time = time;
         this.date = date;
         this.make = make;
@@ -33,80 +51,99 @@ public class Vehicle {
     // Getters and Setters
     // Clean out unused
 
-    public LocalTime getTime() {
+    public LocalTime getTime()
+    {
         return time;
     }
 
-    public void setTime(LocalTime time) {
+    public void setTime(LocalTime time)
+    {
         this.time = time;
     }
 
-    public LocalDate getDate() {
+    public LocalDate getDate()
+    {
         return date;
     }
 
-    public void setDate(LocalDate date) {
+    public void setDate(LocalDate date)
+    {
         this.date = date;
     }
 
-    public String getVehicleType() {
+    public String getVehicleType()
+    {
         return vehicleType;
     }
 
-    public void setVehicleType(String vehicleType) {
+    public void setVehicleType(String vehicleType)
+    {
         this.vehicleType = vehicleType;
     }
 
-    public String getMake() {
+    public String getMake()
+    {
         return make;
     }
 
-    public void setMake(String make) {
+    public void setMake(String make)
+    {
         this.make = make;
     }
 
-    public String getModel() {
+    public String getModel()
+    {
         return model;
     }
 
-    public void setModel(String model) {
+    public void setModel(String model)
+    {
         this.model = model;
     }
 
-    public String getColor() {
+    public String getColor()
+    {
         return color;
     }
 
-    public void setColor(String color) {
+    public void setColor(String color)
+    {
         this.color = color;
     }
 
-    public int getYear() {
+    public int getYear()
+    {
         return year;
     }
 
-    public void setYear(int year) {
+    public void setYear(int year)
+    {
         this.year = year;
     }
 
-    public int getMileage() {
+    public int getMileage()
+    {
         return mileage;
     }
 
-    public void setMileage(int mileage) {
+    public void setMileage(int mileage)
+    {
         this.mileage = mileage;
     }
 
-    public double getPrice() {
+    public double getPrice()
+    {
         return price;
     }
 
-    public void setPrice(double price) {
+    public void setPrice(double price)
+    {
         this.price = price;
     }
 
     @Override
-    public String toString() {
+    public String toString()
+    {
         return "Vehicle{" +
                ", Type='" + vehicleType + '\'' +
                ", Make='" + make + '\'' +
@@ -114,6 +151,6 @@ public class Vehicle {
                ", Color='" + color + '\'' +
                ", Year=" + year +
                ", Mileage=" + mileage +
-               ", Price=" + price ;
+               ", Price=" + price;
     }
 }
