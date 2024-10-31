@@ -43,8 +43,8 @@ public class Dealership {
 
     @Override
     public String toString() {
-        return " Name='" + dealershipName + '\'' +
-               ", Address='" + dealershipAddress + '\'' +
-               ", Phone='" + dealershipPhone + '\'';
+        return " D & B Used Cars '" + dealershipName + '\'' +
+               ", 111 Old Benbrook Rd '" + dealershipAddress + '\'' +
+               ", 817-555-5555 " + dealershipPhone + '\'';
     }
 }

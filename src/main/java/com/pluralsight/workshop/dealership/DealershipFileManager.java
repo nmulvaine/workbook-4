@@ -1,5 +1,7 @@
 package com.pluralsight.workshop.dealership;
 
+import com.pluralsight.vehicles.Vehicle;
+
 import java.io.*;
 import java.time.LocalDate;
 import java.time.LocalTime;
@@ -18,7 +20,7 @@ public class DealershipFileManager {
                     .append(String.valueOf(vm.getTime())).append(" | ")
                     .append(vm.getVehicleType()).append(" | ")
                     .append(vm.getMake()).append(" | ")
-                    .append(String.valueOf(vm.getPrice()));
+                    .append(String.valueOf(vm.getVehiclePrice()));
 
             System.out.println("Inventory successfully updated!");
         } catch (IOException e) {

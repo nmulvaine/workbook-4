@@ -20,7 +20,7 @@ public class JFrameKeyHighlight extends JFrame implements KeyListener {
         utilityFrameSetUp();
     }
 
-    public void utilityFrameSetUp() throws IOException, BadLocationException
+    public void utilityFrameSetUp() throws BadLocationException
     {
         textArea = new JTextArea();
         textArea.setEditable(false);
@@ -40,7 +40,7 @@ public class JFrameKeyHighlight extends JFrame implements KeyListener {
         highlightLine(currentLine);
     }
 
-    public void runTextHighlight(List<String> promptList) throws IOException, BadLocationException
+    public void runTextHighlight(List<UserPrompt> promptList) throws IOException, BadLocationException
     {
         new JFrameKeyHighlight(promptList);
     }
