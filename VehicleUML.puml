@@ -1,0 +1,72 @@
+@startuml
+abstract class com.pluralsight.vehicles.StationWagon {
+}
+abstract class com.pluralsight.vehicles.Hatchback {
+}
+abstract class com.pluralsight.vehicles.Luxury {
+}
+abstract class com.pluralsight.vehicles.EV {
+}
+abstract class com.pluralsight.vehicles.Coupe {
+}
+abstract class com.pluralsight.vehicles.Truck {
+}
+abstract class com.pluralsight.vehicles.SUV {
+}
+abstract class com.pluralsight.vehicles.Hybrid {
+}
+abstract class com.pluralsight.vehicles.Sport {
+}
+class com.pluralsight.vehicles.Vehicle {
+- String vehicleType
+- String make
+- String model
+- String vehicleColor
+- int vehicleYear
+- int vehicleMileage
+- double vehiclePrice
++ String getVehicleType()
++ void setVehicleType(String)
++ String getMake()
++ void setMake(String)
++ String getModel()
++ void setModel(String)
++ String getVehicleColor()
++ void setVehicleColor(String)
++ int getVehicleYear()
++ void setVehicleYear(int)
++ int getVehicleMileage()
++ void setVehicleMileage(int)
++ double getVehiclePrice()
++ void setVehiclePrice(double)
++ String toString()
+}
+
+
+abstract class com.pluralsight.vehicles.Convertible {
+}
+abstract class com.pluralsight.vehicles.Van {
+}
+abstract class com.pluralsight.vehicles.Crossover {
+}
+abstract class com.pluralsight.vehicles.Minivan {
+}
+abstract class com.pluralsight.vehicles.Sedan {
+}
+
+
+com.pluralsight.vehicles.Vehicle <|-- com.pluralsight.vehicles.StationWagon
+com.pluralsight.vehicles.Vehicle <|-- com.pluralsight.vehicles.Hatchback
+com.pluralsight.vehicles.Vehicle <|-- com.pluralsight.vehicles.Luxury
+com.pluralsight.vehicles.Vehicle <|-- com.pluralsight.vehicles.EV
+com.pluralsight.vehicles.Vehicle <|-- com.pluralsight.vehicles.Coupe
+com.pluralsight.vehicles.Vehicle <|-- com.pluralsight.vehicles.Truck
+com.pluralsight.vehicles.Vehicle <|-- com.pluralsight.vehicles.SUV
+com.pluralsight.vehicles.Vehicle <|-- com.pluralsight.vehicles.Hybrid
+com.pluralsight.vehicles.Vehicle <|-- com.pluralsight.vehicles.Sport
+com.pluralsight.vehicles.Vehicle <|-- com.pluralsight.vehicles.Convertible
+com.pluralsight.vehicles.Vehicle <|-- com.pluralsight.vehicles.Van
+com.pluralsight.vehicles.Vehicle <|-- com.pluralsight.vehicles.Crossover
+com.pluralsight.vehicles.Vehicle <|-- com.pluralsight.vehicles.Minivan
+com.pluralsight.vehicles.Vehicle <|-- com.pluralsight.vehicles.Sedan
+@enduml
