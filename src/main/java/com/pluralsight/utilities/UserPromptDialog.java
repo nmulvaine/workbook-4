@@ -5,50 +5,53 @@ import java.awt.event.*;
 
 public class UserPromptDialog extends JDialog
 {
+    Utilities utilities = new Utilities();
     private JPanel contentPane;
     private JButton buttonOK;
-    private JButton buttonCancel;
+    private JButton onEndProgram;
+    private JButton titleMenuIcon;
+    private JComboBox dropDownMenu;
 
     public UserPromptDialog()
     {
+
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
-        buttonOK.addActionListener(new ActionListener()
+        buttonOK.addActionListener(e -> onOK());
+
+
+        onEndProgram.addActionListener(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
-                onOK();
+                onEndProgram();
             }
         });
 
-        buttonCancel.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                onCancel();
-            }
-        });
-
-        // call onCancel() when cross is clicked
+        // call onEndProgram() when cross is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter()
         {
             public void windowClosing(WindowEvent e)
             {
-                onCancel();
+                onEndProgram();
             }
         });
 
-        // call onCancel() on ESCAPE
+        // TODO Alter for "Exit: button instead of ESC key
+        // call onEndProgram() on ESCAPE
         contentPane.registerKeyboardAction(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
             {
-                onCancel();
+                onEndProgram();
             }
         }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
+        titleMenuIcon.addMouseListener(new MouseAdapter()
+        {
+        });
     }
 
     private void onOK()
@@ -57,9 +60,9 @@ public class UserPromptDialog extends JDialog
         dispose();
     }
 
-    private void onCancel()
+    private void onEndProgram()
     {
-        // add your code here if necessary
+        utilities.setMenuIsRunning(false);
         dispose();
     }
 
@@ -70,4 +73,6 @@ public class UserPromptDialog extends JDialog
         dialog.setVisible(true);
         System.exit(0);
     }
+
+
 }

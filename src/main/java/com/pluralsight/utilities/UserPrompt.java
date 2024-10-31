@@ -4,8 +4,9 @@ package com.pluralsight.utilities;
 // Todo - Determine if file path being absent is issue
 // Todo - Provide file path if needed
 
-import java.io.BufferedReader;
-import java.io.FileReader;
+import java.util.ArrayList;
+import java.util.List;
+import java.io.*;
 import java.io.IOException;
 
 abstract public class UserPrompt
@@ -21,7 +22,7 @@ abstract public class UserPrompt
     }
 
 
-    protected static void userPromptReader(String[] args) throws IOException
+    protected void userPromptReader(String[] args) throws IOException
     {
 
         String line;
@@ -39,7 +40,7 @@ abstract public class UserPrompt
 
         }
 
-        public void setChoiceText (String choiceText)
+        public void setChoiceText (choiceText)
         {
             this.choiceText = choiceText;
         }
