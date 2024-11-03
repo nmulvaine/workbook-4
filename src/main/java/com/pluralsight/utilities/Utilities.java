@@ -1,6 +1,7 @@
 package com.pluralsight.utilities;
 
 
+import javax.swing.plaf.basic.BasicListUI;
 import java.io.BufferedReader;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
@@ -14,8 +15,19 @@ public class Utilities
 {
 
     // Allows for menuLanding to be called to another class
-
+    private BasicListUI.MouseInputHandler userInput;
     private boolean menuIsRunning = true;
+
+    public BasicListUI.MouseInputHandler getUserInput()
+    {
+        return userInput;
+    }
+
+    public void setUserInput(BasicListUI.MouseInputHandler userInput)
+    {
+        this.userInput = userInput;
+    }
+
     public boolean isMenuIsRunning()
     {
         // Can turn boolean false
@@ -28,8 +40,4 @@ public class Utilities
         this.menuIsRunning = menuIsRunning;
 
     }
-
-
-
-
 }

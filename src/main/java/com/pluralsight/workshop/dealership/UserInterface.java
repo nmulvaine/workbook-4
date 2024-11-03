@@ -12,22 +12,19 @@ import java.util.List;
 // Pulls variables from other classes for sorting, adding, removing vehicles
 
 
-public class UserInterface
-{
-
-    UserPrompt uPrompt;
-    List<UserPrompt> promptList;
-    Utilities util = new Utilities();
-    UserPromptDialog dialog = new UserPromptDialog();
-
-    void menuLanding() throws IOException, BadLocationException
-    {
-
-        // Top banner for menu
-
-
-        System.out.printf(uPrompt.toString());
-        uPrompt.userPromptReader();
+//public class UserInterface
+//{
+//
+//    UserPrompt uPrompt;
+//
+//    void menuLanding() throws IOException, BadLocationException
+//    {
+//
+//        // Top banner for menu
+//
+//
+//        System.out.printf(uPrompt.toString());
+//        uPrompt.userPromptReader();
 
 
 
@@ -40,5 +37,5 @@ public class UserInterface
 //
 //
 //        }
-    }
-}
+//    }
+//}

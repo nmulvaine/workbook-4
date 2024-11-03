@@ -1,81 +1,85 @@
 package com.pluralsight.utilities;
 
 import javax.swing.*;
+import java.awt.*;
 import java.awt.event.*;
-import java.util.List;
 
-public class UserPromptDialog extends JDialog
-{
-    Utilities utilities = new Utilities();
+public class UserPromptDialog extends JDialog {
+    private Utilities utilities = new Utilities();
     private JPanel contentPane;
     private JButton buttonOK;
     private JButton onEndProgram;
-    private JButton titleMenuIcon;
-    private JComboBox dropDownMenu;
+    private JLabel titleMenuIcon;
+    private JComboBox<String> dropDownMenu;
 
-    public UserPromptDialog()
-    {
+    public UserPromptDialog(JComboBox<String> dropDownMenu, JButton onEndProgram, JLabel titleMenuIcon, JButton buttonOK, JPanel contentPane) {
+        this.dropDownMenu = dropDownMenu;
+        this.onEndProgram = onEndProgram;
+        this.titleMenuIcon = titleMenuIcon;
+        this.buttonOK = buttonOK;
+        this.contentPane = contentPane;
 
-        //JComboBox dropDownMenu = new JComboBox();
+        // Set layout for contentPane and add components
+        contentPane.setLayout(new BorderLayout());
+        titleMenuIcon.setHorizontalAlignment(SwingConstants.CENTER);
+        titleMenuIcon.setVerticalAlignment(SwingConstants.CENTER);// Center-align title
+        //contentPane.add(titleMenuIcon, BorderLayout.NORTH);
+        contentPane.add(dropDownMenu, BorderLayout.CENTER);
+
+        // Add OK and Exit buttons to a panel at the bottom
+        JPanel buttonPanel = new JPanel();
+        buttonPanel.add(buttonOK);
+        buttonPanel.add(onEndProgram);
+        contentPane.add(buttonPanel, BorderLayout.SOUTH);
+
         setContentPane(contentPane);
         setModal(true);
-        getRootPane().setDefaultButton(buttonOK);
+        setSize(400, 300); // Set initial size
+        setLocationRelativeTo(null); // Center the dialog on screen
 
+        // Set up button click events
         buttonOK.addActionListener(e -> onOK());
+        onEndProgram.addActionListener(e -> onEndProgram());
 
-        onEndProgram.addActionListener(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                onEndProgram();
-            }
-        });
-
-        // call onEndProgram() when cross is clicked
+        // Call onEndProgram() when the close button is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
-        addWindowListener(new WindowAdapter()
-        {
-            public void windowClosing(WindowEvent e)
-            {
+        addWindowListener(new WindowAdapter() {
+            public void windowClosing(WindowEvent e) {
                 onEndProgram();
             }
-        });
-
-        // TODO Alter for "Exit: button instead of ESC key
-
-        contentPane.registerKeyboardAction(new ActionListener()
-        {
-            public void actionPerformed(ActionEvent e)
-            {
-                onEndProgram();
-            }
-        }, KeyStroke.getKeyStroke(KeyEvent.VK_ESCAPE, 0), JComponent.WHEN_ANCESTOR_OF_FOCUSED_COMPONENT);
-        titleMenuIcon.addMouseListener(new MouseAdapter()
-        {
         });
     }
 
-    private void onOK()
-    {
-        // add your code here
+    private void onOK() {
         dispose();
     }
 
-    private void onEndProgram()
-    {
+    private void onEndProgram() {
         utilities.setMenuIsRunning(false);
         dispose();
     }
 
-    public static void main(String[] args)
-    {
-        UserPromptDialog dialog = new UserPromptDialog();
-        dialog.pack();
+    public static void main(String[] args) {
+        JComboBox<String> dropDownMenu = new JComboBox<>(new String[]{
+                "Please select from the following",
+                "Search by price",
+                "Search by make / model",
+                "Search by year",
+                "Search by color",
+                "Search by mileage",
+                "Search by type",
+                "View all vehicles",
+                "Add vehicle",
+                "Remove vehicle"
+        });
+        JButton onEndProgram = new JButton("Exit");
+        JLabel titleMenuIcon = new JLabel("D & B Used Cars"); // Static text label
+        JButton buttonOK = new JButton("OK");
+        JPanel contentPane = new JPanel();
+        utilities.setUserInput();
+
+        // Initialize the dialog
+        UserPromptDialog dialog = new UserPromptDialog(dropDownMenu, onEndProgram, titleMenuIcon, buttonOK, contentPane);
         dialog.setVisible(true);
-        System.exit(0);
     }
-
-
-
-
 }
