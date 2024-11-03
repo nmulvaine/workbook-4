@@ -1,6 +1,7 @@
 package com.pluralsight.workshop.dealership;
 
-import com.pluralsight.utilities.JFrameKeyHighlight;
+import com.pluralsight.utilities.UserPromptDialog;
+import com.pluralsight.utilities.UserPromptDialog.*;
 import com.pluralsight.utilities.UserPrompt;
 import com.pluralsight.utilities.Utilities;
 
@@ -13,10 +14,11 @@ import java.util.List;
 
 public class UserInterface
 {
-    JFrameKeyHighlight highlight;
+
     UserPrompt uPrompt;
     List<UserPrompt> promptList;
     Utilities util = new Utilities();
+    UserPromptDialog dialog = new UserPromptDialog();
 
     void menuLanding() throws IOException, BadLocationException
     {
@@ -25,26 +27,18 @@ public class UserInterface
 
 
         System.out.printf(uPrompt.toString());
-        //promptList = uPrompt.userPromptReader();
-
-//        List<String> stringList = promptList.stream()
-//                .map(UserPrompt::getChoiceText)// Changed to getChoiceText
-//                .toList();
+        uPrompt.userPromptReader();
 
 
-        while (util.isMenuIsRunning()) {
-            // Try Catch instead of for
-            try {
-                highlight.runTextHighlight(promptList);
-                for (UserPrompt prompt : promptList) {
-                    System.out.println(prompt); // Fixed method call to print prompt
-                }
 
-            } catch (IOException | BadLocationException e) {
-                throw e;
-            }
-
-
-        }
+//        while (util.isMenuIsRunning()) {
+//            // Try Catch instead of for
+//            dialog.createUIComponents(promptList);
+//            for (UserPrompt prompt : promptList) {
+//                System.out.println(prompt); // Fixed method call to print prompt
+//            }
+//
+//
+//        }
     }
 }

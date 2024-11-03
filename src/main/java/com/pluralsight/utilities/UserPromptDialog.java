@@ -2,6 +2,7 @@ package com.pluralsight.utilities;
 
 import javax.swing.*;
 import java.awt.event.*;
+import java.util.List;
 
 public class UserPromptDialog extends JDialog
 {
@@ -15,12 +16,12 @@ public class UserPromptDialog extends JDialog
     public UserPromptDialog()
     {
 
+        //JComboBox dropDownMenu = new JComboBox();
         setContentPane(contentPane);
         setModal(true);
         getRootPane().setDefaultButton(buttonOK);
 
         buttonOK.addActionListener(e -> onOK());
-
 
         onEndProgram.addActionListener(new ActionListener()
         {
@@ -41,7 +42,7 @@ public class UserPromptDialog extends JDialog
         });
 
         // TODO Alter for "Exit: button instead of ESC key
-        // call onEndProgram() on ESCAPE
+
         contentPane.registerKeyboardAction(new ActionListener()
         {
             public void actionPerformed(ActionEvent e)
@@ -73,6 +74,8 @@ public class UserPromptDialog extends JDialog
         dialog.setVisible(true);
         System.exit(0);
     }
+
+
 
 
 }

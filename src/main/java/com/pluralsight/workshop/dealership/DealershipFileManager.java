@@ -1,5 +1,6 @@
 package com.pluralsight.workshop.dealership;
 
+import com.pluralsight.utilities.Utilities;
 import com.pluralsight.vehicles.Vehicle;
 
 import java.io.*;
@@ -9,15 +10,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class DealershipFileManager {
-    private final String FILE_PATH = "./src/main/resources/inventory.csv"; // Changed to constant
+    private final String inventoryFile = "./src/main/resources/inventory.csv"; // Changed to constant
     Dealership dealership;
+    Utilities util = new Utilities();
+
 
     public void saveToFile(Vehicle vm) throws IOException {
-        try (FileWriter fWriter = new FileWriter(FILE_PATH);
+        try (FileWriter fWriter = new FileWriter(inventoryFile);
              BufferedWriter bWriter = new BufferedWriter(fWriter);
              PrintWriter pWriter = new PrintWriter(bWriter)) {
-            pWriter.append(String.valueOf(vm.getDate())).append(" | ")
-                    .append(String.valueOf(vm.getTime())).append(" | ")
+            pWriter.append(String.valueOf(LocalTime.now())).append(" | ")
+                    .append(String.valueOf(LocalDate.now())).append(" | ")
                     .append(vm.getVehicleType()).append(" | ")
                     .append(vm.getMake()).append(" | ")
                     .append(String.valueOf(vm.getVehiclePrice()));
@@ -29,24 +32,30 @@ public class DealershipFileManager {
         }
     }
 
+
+    @Override
+    public String toString()
+    {
+        return "DealershipFileManager{" +
+               "inventoryFile='" + inventoryFile + '\'' +
+               '}';
+    }
+
     public List<Vehicle> readFromFile() {
         List<Vehicle> allCars = new ArrayList<>();
-        try (BufferedReader bReader = new BufferedReader(new FileReader(FILE_PATH))) {
+        try (BufferedReader bReader = new BufferedReader(new FileReader(inventoryFile))) {
             String line;
             while ((line = bReader.readLine()) != null) {
                 String[] lineArr = line.split("\\|");
-                if (lineArr.length == 9) { // Assuming 9 columns
+                if (lineArr.length == 7) { // Assuming 9 columns
                     Vehicle newCar = new Vehicle(
-                            LocalDate.parse(lineArr[0].trim()),
-                            LocalTime.parse(lineArr[1].trim()),
-                            lineArr[2].trim(),
-                            lineArr[3].trim(),
-                            lineArr[4].trim(),
-                            lineArr[5].trim(),
-                            Integer.parseInt(lineArr[6].trim()),
-                            Integer.parseInt(lineArr[7].trim()),
-                            Double.parseDouble(lineArr[8].trim())
-                    );
+                            /* vehicleType */ lineArr[0].trim(),
+                            /* make */ lineArr[1].trim(),
+                            /* model */ lineArr[2].trim(),
+                            /* color */lineArr[3].trim(),
+                            /* year */ Integer.parseInt(lineArr[4].trim()),
+                            /* mileage */ Integer.parseInt(lineArr[5].trim()),
+                            /* price */ Double.parseDouble(lineArr[6].trim()));
                     allCars.add(newCar);
                 }
             }

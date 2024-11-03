@@ -4,7 +4,7 @@ import java.time.LocalDate;
 import java.time.LocalTime;
 
 
-public class DateAndTime
+public class DateAndTime extends Utilities
 {
     private LocalTime time;
     private LocalDate date;
