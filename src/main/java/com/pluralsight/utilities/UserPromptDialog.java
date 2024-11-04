@@ -1,6 +1,7 @@
 package com.pluralsight.utilities;
 
 import javax.swing.*;
+import javax.swing.plaf.basic.BasicListUI;
 import java.awt.*;
 import java.awt.event.*;
 
@@ -50,36 +51,24 @@ public class UserPromptDialog extends JDialog {
         });
     }
 
+    private BasicListUI.MouseInputHandler setDropDownMenu (JComboBox<String> dropDownMenu)
+    {
+        // Adds frame to dropdown menu
+        JFrame frame = new JFrame();
+        frame.add(dropDownMenu);
+
+        return setDropDownMenu(dropDownMenu);
+    }
+
     private void onOK() {
+        // Needs to assign the selected item from the drop-down menu to a userInput
+        utilities.setUserInput(setDropDownMenu(dropDownMenu));
+
         dispose();
     }
 
     private void onEndProgram() {
         utilities.setMenuIsRunning(false);
         dispose();
-    }
-
-    public static void main(String[] args) {
-        JComboBox<String> dropDownMenu = new JComboBox<>(new String[]{
-                "Please select from the following",
-                "Search by price",
-                "Search by make / model",
-                "Search by year",
-                "Search by color",
-                "Search by mileage",
-                "Search by type",
-                "View all vehicles",
-                "Add vehicle",
-                "Remove vehicle"
-        });
-        JButton onEndProgram = new JButton("Exit");
-        JLabel titleMenuIcon = new JLabel("D & B Used Cars"); // Static text label
-        JButton buttonOK = new JButton("OK");
-        JPanel contentPane = new JPanel();
-        utilities.setUserInput();
-
-        // Initialize the dialog
-        UserPromptDialog dialog = new UserPromptDialog(dropDownMenu, onEndProgram, titleMenuIcon, buttonOK, contentPane);
-        dialog.setVisible(true);
     }
 }

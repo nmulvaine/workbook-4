@@ -80,6 +80,7 @@
           <component id="2a7a1" class="javax.swing.JComboBox" binding="dropDownMenu">
             <constraints/>
             <properties>
+              <editable value="false"/>
               <model>
                 <item value="Please select from the following"/>
                 <item value="Search by price"/>
