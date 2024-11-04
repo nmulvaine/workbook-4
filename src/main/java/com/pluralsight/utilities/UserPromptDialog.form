@@ -52,7 +52,7 @@
         <properties/>
         <border type="none"/>
         <children>
-          <component id="988d1" class="javax.swing.JFormattedTextField">
+          <component id="988d1" class="javax.swing.JFormattedTextField" binding="dBUsedCarsFormattedTextField">
             <constraints>
               <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="6" anchor="0" fill="0" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
@@ -75,24 +75,15 @@
         <children>
           <component id="c48f9" class="javax.swing.JLabel" binding="titleMenuIcon">
             <constraints/>
-            <properties/>
+            <properties>
+              <labelFor value="988d1"/>
+            </properties>
           </component>
-          <component id="2a7a1" class="javax.swing.JComboBox" binding="dropDownMenuSystem">
+          <component id="2a7a1" class="javax.swing.JComboBox" binding="dropDownMenu">
             <constraints/>
             <properties>
               <editable value="false"/>
-              <model>
-                <item value="Please select from the following"/>
-                <item value="Search by price"/>
-                <item value="Search by make / model"/>
-                <item value="Search by year"/>
-                <item value="Search by color"/>
-                <item value="Search by mileage"/>
-                <item value="Search by type"/>
-                <item value="View all vehicles"/>
-                <item value="Add vehicle"/>
-                <item value="Remove vehicle"/>
-              </model>
+              <model/>
             </properties>
           </component>
         </children>

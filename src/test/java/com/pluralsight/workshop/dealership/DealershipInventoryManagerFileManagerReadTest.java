@@ -16,7 +16,6 @@ import static org.junit.jupiter.api.Assertions.assertTrue;
 class DealershipInventoryManagerFileManagerReadTest {
 
     private DealershipFileManager dealership;
-    private File tempFile;
 
     @BeforeEach
     void setUp() throws IOException {
@@ -24,7 +23,7 @@ class DealershipInventoryManagerFileManagerReadTest {
         dealership = new DealershipFileManager();
 
         // Create a temporary file to act as the empty inventory file
-        tempFile = File.createTempFile("inventory", ".csv");
+        File tempFile = File.createTempFile("inventory", ".csv");
         tempFile.deleteOnExit();
 
         // Ensure the file is empty by overwriting with an empty FileWriter
@@ -37,12 +36,6 @@ class DealershipInventoryManagerFileManagerReadTest {
     }
 
     @AfterEach
-    void tearDown() {
-        // Cleanup
-        if (tempFile.exists()) {
-            tempFile.delete();
-        }
-    }
 
     @Test
     void readFromFile_WhenFileIsEmpty_ReturnsEmptyList()

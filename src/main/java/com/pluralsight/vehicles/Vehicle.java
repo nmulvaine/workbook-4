@@ -28,10 +28,6 @@ public class Vehicle
         this.vehiclePrice = price;
     }
 
-    // Getters and Setters
-    // TODO Clean out unused
-
-
     public String getVehicleVIN()
     {
         return vehicleVIN;

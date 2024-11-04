@@ -9,8 +9,8 @@ import javax.swing.*;
 public class DropDownMenuSystem extends UserPromptDialog
 {
 
-    private DealershipInventoryManager inventoryManager;
-    private DealershipFileManager fileManager;
+    private final DealershipInventoryManager inventoryManager;
+    private final DealershipFileManager fileManager;
     protected JComboBox<String> dropDownMenu;
 
 public String getSelectedOption () {
@@ -67,7 +67,7 @@ public String getSelectedOption () {
                             break;
 
                         case "View all vehicles":
-                            inventoryManager.viewAllVehicles(fileManager.readFromFile());
+                            inventoryManager.displayVehicles(fileManager.readFromFile());
                             break;
 
                         case "Add vehicle":
@@ -86,8 +86,10 @@ public String getSelectedOption () {
 
 
                         case "Exit":
+                            onEndProgram.doClick();
                             utilities.setMenuIsRunning(false);
                             System.exit(0);
+                            dispose();
                             break;
 
                         default:
@@ -95,7 +97,7 @@ public String getSelectedOption () {
                     }
                 }
             } catch (Exception ex) {
-                ex.printStackTrace();
+
             }
 
 
