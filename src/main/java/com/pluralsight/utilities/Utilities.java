@@ -1,43 +1,29 @@
 package com.pluralsight.utilities;
 
+import javax.swing.*;
 
-import javax.swing.plaf.basic.BasicListUI;
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
-
-// Grabs file with user prompt
-
-public class Utilities
-{
-
-    // Allows for menuLanding to be called to another class
-    private BasicListUI.MouseInputHandler userInput;
+public class Utilities extends UserPromptDialog {
+    private String userInput; // Changed to String
     private boolean menuIsRunning = true;
 
-    public BasicListUI.MouseInputHandler getUserInput()
+    public Utilities(JComboBox<String> dropDownMenu, JButton onEndProgram, JLabel titleMenuIcon, JButton buttonOK, JPanel contentPane)
     {
+        super(dropDownMenu, onEndProgram, titleMenuIcon, buttonOK, contentPane);
+    }
+
+    public String getUserInput() {
         return userInput;
     }
 
-    public void setUserInput(BasicListUI.MouseInputHandler userInput)
-    {
+    public void setUserInput(String userInput) {
         this.userInput = userInput;
     }
 
-    public boolean isMenuIsRunning()
-    {
-        // Can turn boolean false
+    public boolean isMenuIsRunning() {
         return menuIsRunning;
     }
 
-    public void setMenuIsRunning(boolean menuIsRunning)
-    {
-        // Shares the value of the boolean
+    public void setMenuIsRunning(boolean menuIsRunning) {
         this.menuIsRunning = menuIsRunning;
-
     }
 }

@@ -77,7 +77,7 @@
             <constraints/>
             <properties/>
           </component>
-          <component id="2a7a1" class="javax.swing.JComboBox" binding="dropDownMenu">
+          <component id="2a7a1" class="javax.swing.JComboBox" binding="dropDownMenuSystem">
             <constraints/>
             <properties>
               <editable value="false"/>

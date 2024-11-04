@@ -2,8 +2,8 @@ package com.pluralsight.vehicles;
 
 abstract class Van extends Vehicle
 {
-    public Van(String vehicleType, String make, String model, String vehicleColor, int vehicleYear, int vehicleMileage, double vehiclePrice)
+    public Van(String type, String make, String model, String color, int year, int mileage, double price, String vin)
     {
-        super(vehicleType, make, model, vehicleColor, vehicleYear, vehicleMileage, vehiclePrice);
+        super(type, make, model, color, year, mileage, price, vin);
     }
 }

@@ -1,14 +1,14 @@
 package com.pluralsight.utilities;
 
 import javax.swing.*;
-import javax.swing.plaf.basic.BasicListUI;
 import java.awt.*;
-import java.awt.event.*;
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 
 public class UserPromptDialog extends JDialog {
-    private Utilities utilities = new Utilities();
+    Utilities utilities;
     private JPanel contentPane;
-    private JButton buttonOK;
+    protected JButton buttonOK;
     private JButton onEndProgram;
     private JLabel titleMenuIcon;
     private JComboBox<String> dropDownMenu;
@@ -20,14 +20,12 @@ public class UserPromptDialog extends JDialog {
         this.buttonOK = buttonOK;
         this.contentPane = contentPane;
 
-        // Set layout for contentPane and add components
+        // Layout configuration
         contentPane.setLayout(new BorderLayout());
         titleMenuIcon.setHorizontalAlignment(SwingConstants.CENTER);
-        titleMenuIcon.setVerticalAlignment(SwingConstants.CENTER);// Center-align title
-        //contentPane.add(titleMenuIcon, BorderLayout.NORTH);
+        contentPane.add(titleMenuIcon, BorderLayout.NORTH);
         contentPane.add(dropDownMenu, BorderLayout.CENTER);
 
-        // Add OK and Exit buttons to a panel at the bottom
         JPanel buttonPanel = new JPanel();
         buttonPanel.add(buttonOK);
         buttonPanel.add(onEndProgram);
@@ -35,14 +33,12 @@ public class UserPromptDialog extends JDialog {
 
         setContentPane(contentPane);
         setModal(true);
-        setSize(400, 300); // Set initial size
-        setLocationRelativeTo(null); // Center the dialog on screen
+        setSize(400, 300);
+        setLocationRelativeTo(null);
 
-        // Set up button click events
         buttonOK.addActionListener(e -> onOK());
         onEndProgram.addActionListener(e -> onEndProgram());
 
-        // Call onEndProgram() when the close button is clicked
         setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
@@ -51,20 +47,9 @@ public class UserPromptDialog extends JDialog {
         });
     }
 
-    private BasicListUI.MouseInputHandler setDropDownMenu (JComboBox<String> dropDownMenu)
-    {
-        // Adds frame to dropdown menu
-        JFrame frame = new JFrame();
-        frame.add(dropDownMenu);
-
-        return setDropDownMenu(dropDownMenu);
-    }
-
     private void onOK() {
-        // Needs to assign the selected item from the drop-down menu to a userInput
-        utilities.setUserInput(setDropDownMenu(dropDownMenu));
-
-        dispose();
+        String selectedOption = (String) dropDownMenu.getSelectedItem();
+        utilities.setUserInput(selectedOption);
     }
 
     private void onEndProgram() {

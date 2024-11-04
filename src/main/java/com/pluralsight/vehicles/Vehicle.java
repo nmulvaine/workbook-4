@@ -1,15 +1,12 @@
 package com.pluralsight.vehicles;
 
-import java.time.LocalDate;
-import java.time.LocalTime;
-
 // Sorting logic (All, Type, Make, Model, Color, Year, Mileage, Price)
 // Print receipt?
 
 public class Vehicle
 {
 
-
+    private String vehicleVIN;
     private String vehicleType;
     private String make;
     private String model;
@@ -18,21 +15,32 @@ public class Vehicle
     private int vehicleMileage;
     private double vehiclePrice;
 
-    public Vehicle(String vehicleType, String make, String model, String vehicleColor, int vehicleYear, int vehicleMileage, double vehiclePrice)
+
+    public Vehicle(String type, String make, String model, String color, int year, int mileage, double price, String vin)
     {
+        this.vehicleVIN = vin;
         this.make = make;
-        this.vehicleType = vehicleType;
+        this.vehicleType = type;
         this.model = model;
-        this.vehicleColor = vehicleColor;
-        this.vehicleYear = vehicleYear;
-        this.vehicleMileage = vehicleMileage;
-        this.vehiclePrice = vehiclePrice;
+        this.vehicleColor = color;
+        this.vehicleYear = year;
+        this.vehicleMileage = mileage;
+        this.vehiclePrice = price;
     }
 
     // Getters and Setters
     // TODO Clean out unused
 
 
+    public String getVehicleVIN()
+    {
+        return vehicleVIN;
+    }
+
+    public void setVehicleVIN(String vehicleVIN)
+    {
+        this.vehicleVIN = vehicleVIN;
+    }
 
     public String getVehicleType()
     {
@@ -108,6 +116,7 @@ public class Vehicle
     public String toString()
     {
         return "Vehicle{" +
+               "VIN=" + vehicleVIN + '\'' +
                ", Type='" + vehicleType + '\'' +
                ", Make='" + make + '\'' +
                ", Model='" + model + '\'' +
