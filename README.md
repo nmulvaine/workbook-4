@@ -11,3 +11,10 @@ Workshop-5
 
 
 
+## Unified Modeling Language Diagram ##
+
+[UtilitiesUML.puml](UtilitiesUML.puml)
+
+[VehicleUML.puml](VehicleUML.puml)
+
+[DealershipUML.puml](DealershipUML.puml)

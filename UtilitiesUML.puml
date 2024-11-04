@@ -1,0 +1,50 @@
+@startuml
+class com.pluralsight.utilities.UserPromptDialog {
+~ Utilities utilities
+- JPanel contentPane
+# JButton buttonOK
+# JButton onEndProgram
+- JLabel titleMenuIcon
+- JFormattedTextField dBUsedCarsFormattedTextField
+- JComboBox<String> dropDownMenu
+- void onEndProgram()
+}
+
+
+class com.pluralsight.utilities.DropDownMenuSystem {
+- DealershipInventoryManager inventoryManager
+- DealershipFileManager fileManager
+# JComboBox<String> dropDownMenu
++ String getSelectedOption()
+# void handleSelection()
+- Vehicle createVehicleFromInput()
+}
+
+
+class com.pluralsight.utilities.Utilities {
+- String userInput
+- boolean menuIsRunning
++ String getUserInput()
++ void setUserInput(String)
++ boolean isMenuIsRunning()
++ void setMenuIsRunning(boolean)
+}
+
+
+class com.pluralsight.utilities.DateAndTime {
+- LocalTime time
+- LocalDate date
++ LocalTime getTime()
++ void setTime(LocalTime)
++ LocalDate getDate()
++ void setDate(LocalDate)
++ String toString()
+}
+
+
+
+
+com.pluralsight.utilities.JDialog <|-- com.pluralsight.utilities.UserPromptDialog
+com.pluralsight.utilities.UserPromptDialog <|-- com.pluralsight.utilities.DropDownMenuSystem
+com.pluralsight.utilities.UserPromptDialog <|-- com.pluralsight.utilities.Utilities
+@enduml

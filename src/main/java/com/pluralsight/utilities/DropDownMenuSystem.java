@@ -9,13 +9,14 @@ import javax.swing.*;
 public class DropDownMenuSystem extends UserPromptDialog
 {
 
-    private final DealershipInventoryManager inventoryManager;
-    private final DealershipFileManager fileManager;
+    private DealershipInventoryManager inventoryManager;
+    private DealershipFileManager fileManager;
     protected JComboBox<String> dropDownMenu;
 
-public String getSelectedOption () {
-    return utilities.getUserInput() + dropDownMenu.getSelectedItem();
-}
+    public String getSelectedOption()
+    {
+        return utilities.getUserInput() + dropDownMenu.getSelectedItem();
+    }
 
     public DropDownMenuSystem(JComboBox<String> dropDownMenu, JButton onEndProgram, JLabel titleMenuIcon, JButton buttonOK, JPanel contentPane, DealershipInventoryManager inventoryManager)
     {
@@ -24,11 +25,10 @@ public String getSelectedOption () {
         this.fileManager = new DealershipFileManager();
         this.dropDownMenu = dropDownMenu;
 
-
         buttonOK.addActionListener(e -> handleSelection());
     }
 
-    protected void handleSelection()
+    public void handleSelection()
     {
         String selectedOption = (String) dropDownMenu.getSelectedItem();
         while (utilities.isMenuIsRunning()) {
@@ -71,8 +71,7 @@ public String getSelectedOption () {
                             break;
 
                         case "Add vehicle":
-                            Vehicle newVehicle = createVehicleFromInput();
-                            inventoryManager.addVehicle(newVehicle);
+                            inventoryManager.addVehicle();
                             break;
 
                         case "Remove vehicle":
@@ -83,7 +82,6 @@ public String getSelectedOption () {
                         case "Purchase vehicle":
                             String vehiclePurchase = (String) dropDownMenu.getSelectedItem();
                             inventoryManager.removeFromFile(vehiclePurchase);
-
 
                         case "Exit":
                             onEndProgram.doClick();
@@ -97,27 +95,10 @@ public String getSelectedOption () {
                     }
                 }
             } catch (Exception ex) {
-
             }
-
-
         }
-
     }
 
-    private Vehicle createVehicleFromInput()
-    {
-        // Gather details for a new vehicle
-        String type = JOptionPane.showInputDialog("Enter vehicle type:");
-        String make = JOptionPane.showInputDialog("Enter vehicle make:");
-        String model = JOptionPane.showInputDialog("Enter vehicle model:");
-        String color = JOptionPane.showInputDialog("Enter vehicle color:");
-        int year = Integer.parseInt(JOptionPane.showInputDialog("Enter vehicle year:"));
-        int mileage = Integer.parseInt(JOptionPane.showInputDialog("Enter vehicle mileage:"));
-        double price = Double.parseDouble(JOptionPane.showInputDialog("Enter vehicle price:"));
-        String vin = JOptionPane.showInputDialog("Enter vehicle VIN:");
 
-        // Create a new vehicle with the gathered details
-        return new Vehicle(type, make, model, color, year, mileage, price, vin);
-    }
+
 }

@@ -1,32 +1,27 @@
 @startuml
-class com.pluralsight.workshop.dealership.Dealership {
-- String dealershipName
-- String dealershipAddress
-- String dealershipPhone
-+ String getDealershipName()
-+ void setDealershipName(String)
-+ String getDealershipAddress()
-+ void setDealershipAddress(String)
-+ String getDealershipPhone()
-+ void setDealershipPhone(String)
-+ String toString()
-}
-
-
-class com.pluralsight.workshop.dealership.UserInterface {
-~ JFrameKeyHighlight highlight
-~ UserPrompt uPrompt
-~ List<UserPrompt> promptList
-~ Utilities util
-~ void menuLanding()
-}
-
-
 class com.pluralsight.workshop.dealership.DealershipFileManager {
-- String FILE_PATH
-~ Dealership dealership
-+ void saveToFile(Vehicle)
+# DropDownMenuSystem dropDownMenuSystem
+- String inventoryFile
+# void saveToFile(Vehicle)
++ String toString()
++ String getInventoryFile()
++ String setInventoryFile(String)
 + List<Vehicle> readFromFile()
+}
+
+
+class com.pluralsight.workshop.dealership.DealershipInventoryManager {
+- DealershipFileManager df
+- List<Vehicle> filterVehicles(Predicate<Vehicle>)
++ void viewByPrice(double)
++ void viewByMakeModel(String,String)
++ void viewByYear(int)
++ void viewByColor(String)
++ void viewByMileage(int)
++ void viewByType(String)
++ void displayVehicles(List<Vehicle>)
++ void addVehicle(Vehicle)
++ void removeFromFile(String)
 }
 
 

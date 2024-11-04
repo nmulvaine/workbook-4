@@ -53,7 +53,7 @@ public class DealershipFileManager
         }
     }
 
-    @Override
+
     public String toString()
     {
         return "DealershipFileManager{" +
@@ -66,7 +66,7 @@ public class DealershipFileManager
         return inventoryFile;
     }
 
-    public String setInventoryFile (String absolutePath)
+    public String setInventoryFile ()
     {
         return inventoryFile;
     }

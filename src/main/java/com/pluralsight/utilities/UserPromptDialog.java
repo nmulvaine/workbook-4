@@ -34,31 +34,28 @@ public class UserPromptDialog extends JDialog {
         buttonPanel.add(onEndProgram);
         contentPane.add(buttonPanel, BorderLayout.SOUTH);
 
+        // Window traits
         setContentPane(contentPane);
         setModal(true);
         setSize(400, 300);
         setLocationRelativeTo(null);
 
 
-        onEndProgram.addActionListener(e -> onEndProgram());
 
-        setDefaultCloseOperation(DO_NOTHING_ON_CLOSE);
+
+// Close the panel and application
+
+        onEndProgram.addActionListener(e -> onEndProgram());
+        setDefaultCloseOperation(EXIT_ON_CLOSE);
         addWindowListener(new WindowAdapter() {
             public void windowClosing(WindowEvent e) {
                 onEndProgram();
             }
         });
-        dropDownMenu.addMouseListener(new MouseAdapter()
-        {
-            @Override
-            public void mouseClicked(MouseEvent e)
-            {
-                super.mouseClicked(e);
-            }
-        });
+
         onEndProgram.addMouseListener(new MouseAdapter()
         {
-            @Override
+
             public void mouseClicked(MouseEvent e)
             {
                 utilities.setMenuIsRunning(false);
@@ -66,9 +63,21 @@ public class UserPromptDialog extends JDialog {
                 dispose();
             }
         });
+
+        // Drop down menu system
+
+        dropDownMenu.addMouseListener(new MouseAdapter()
+        {
+            public void mouseClicked(MouseEvent e)
+            {
+                super.mouseClicked(e);
+            }
+        });
+
+        // Select user option
+
         buttonOK.addMouseListener(new MouseAdapter()
         {
-            @Override
             public void mouseClicked(MouseEvent e)
             {String selectedOption = (String) dropDownMenu.getSelectedItem();
                 utilities.setUserInput(selectedOption);
@@ -77,7 +86,7 @@ public class UserPromptDialog extends JDialog {
         });
     }
 
-
+    // Part of close program
 
     private void onEndProgram() {
         utilities.setMenuIsRunning(false);
